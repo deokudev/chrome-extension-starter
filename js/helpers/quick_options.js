@@ -38,11 +38,20 @@ window.addEventListener(
     storage.area.get(storage.default_options, function (items) {
       let inputs = document.querySelectorAll("input"),
         selects = document.querySelectorAll("select"),
-        textareas = document.querySelectorAll("textarea");
+        textareas = document.querySelectorAll("textarea"),
+        submit = document.querySelector("button[type=submit]");
+
+      let updateValue = {};
+      submit.addEventListener(
+        "click",
+        function () {
+          saveToStorage(updateValue);
+        },
+        false
+      );
 
       [].forEach.call(inputs, function (el) {
-        let storage_name = el.getAttribute("data-storage"),
-          text_el;
+        let storage_name = el.getAttribute("data-storage");
         if (storage_name && items.hasOwnProperty(storage_name)) {
           switch (el.type) {
             case "checkbox":
@@ -55,7 +64,7 @@ window.addEventListener(
                   let val = {};
                   items[storage_name] = el.checked ? 1 : 0;
                   val[storage_name] = items[storage_name];
-                  saveToStorage(val);
+                  updateValue = { ...updateValue, ...val };
                 },
                 false
               );
@@ -72,7 +81,7 @@ window.addEventListener(
                   if (el.checked) {
                     items[storage_name] = el.value;
                     val[storage_name] = items[storage_name];
-                    saveToStorage(val);
+                    updateValue = { ...updateValue, ...val };
                   }
                 },
                 false
@@ -85,6 +94,11 @@ window.addEventListener(
             case "time":
             case "month":
             case "week":
+            case "text":
+            case "password":
+            case "email":
+            case "tel":
+            case "number":
               el.value = items[storage_name];
               el.addEventListener(
                 "change",
@@ -92,44 +106,10 @@ window.addEventListener(
                   let val = {};
                   items[storage_name] = el.value;
                   val[storage_name] = items[storage_name];
-                  saveToStorage(val);
+                  updateValue = { ...updateValue, ...val };
                 },
                 false
               );
-              break;
-
-            case "text":
-            case "password":
-            case "email":
-            case "tel":
-            case "number":
-              el.value = items[storage_name];
-              break;
-
-            case "submit":
-            case "button":
-              [].forEach.call(
-                document.querySelectorAll(
-                  '[data-storage="' + storage_name + '"]'
-                ),
-                function (elem) {
-                  if (elem.type !== "submit" && elem.type !== "button") {
-                    text_el = elem;
-                  }
-                }
-              );
-              if (text_el) {
-                el.addEventListener(
-                  "click",
-                  function () {
-                    let val = {};
-                    items[storage_name] = text_el.value;
-                    val[storage_name] = items[storage_name];
-                    saveToStorage(val);
-                  },
-                  false
-                );
-              }
               break;
           }
         }
@@ -181,7 +161,7 @@ window.addEventListener(
                   items[storage_name] = options[options.selectedIndex].value;
                 }
                 val[storage_name] = items[storage_name];
-                saveToStorage(val);
+                updateValue = { ...updateValue, ...val };
               },
               false
             );

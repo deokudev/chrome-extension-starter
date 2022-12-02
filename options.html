@@ -2,14 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="css/options.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/bootstrap/bootstrap.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="lib/jsTabs/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="css/options.css" />
     <title>{{extension_name}}</title>
   </head>
   <body>
     <div id="message_place">
-      <span id="error">{{o_error}}</span>
-      <span id="success">{{o_saved}}</span>
+      <div id="error" class="alert alert-danger" role="alert">{{o_error}}</div>
+      <div id="success" class="alert alert-success" role="alert">
+        {{o_saved}}
+      </div>
     </div>
 
     <div id="page">
@@ -34,21 +41,62 @@
           <div id="main">
             <!-- TO-DO : options에 해당하는 값들을 작성-->
             <!-- EXAMPLE -->
-            <select data-storage="example_select_val">
-              <option value="type1">1</option>
-              <option value="type2">2</option>
-              <option value="type3">3</option>
-            </select>
-            <input type="checkbox" data-storage="example_checkbox_val" />
-            <input type="text" data-storage="example_input_val" />
-            <input
-              type="submit"
-              data-storage="example_input_val"
-              value="Save"
-            />
+            <form action="#">
+              <div class="form-group">
+                <label for="exampleInputText">Example text</label>
+                <input
+                  data-storage="example_input_val"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputText"
+                  placeholder="Enter text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect">Example select</label>
+                <select
+                  data-storage="example_select_val"
+                  class="form-control"
+                  id="exampleFormControlSelect"
+                >
+                  <option value="type1">1</option>
+                  <option value="type2">2</option>
+                  <option value="type3">3</option>
+                </select>
+              </div>
+              <div class="form-check">
+                <input
+                  data-storage="example_checkbox_val"
+                  type="checkbox"
+                  class="form-check-input dark"
+                  id="exampleCheck"
+                />
+                <label class="form-check-label" for="exampleCheck"
+                  >Check me out</label
+                >
+              </div>
+              <button type="submit" class="btn btn-dark mt-4">Save</button>
+            </form>
           </div>
 
-          <div id="help">This is help Tab</div>
+          <div id="help">
+            <!-- TO-DO : extension에 대한 설명 및 사용법 -->
+            <div class="jumbotron">
+              <h1 class="display-4">Hello, world!</h1>
+              <p class="lead">This app is for chrome extension starter.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  1. You have to login www.google.com.
+                </li>
+                <li class="list-group-item">2. Click "Run" button.</li>
+              </ul>
+              <p class="lead mt-4">
+                <a class="btn btn-dark btn-lg" href="#" role="button">
+                  Go to Main
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

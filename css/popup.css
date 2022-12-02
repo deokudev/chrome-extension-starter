@@ -4,7 +4,6 @@ body {
   font-family: Arial, sans-serif;
   font-size: 13px;
   color: #4a4a4a;
-  margin-top: 36px;
 }
 
 header {
@@ -22,14 +21,20 @@ header {
 
 #window_actions {
   float: right;
+  font-size: 13px;
 }
 
 #window_actions a {
-  margin: 0 0 0 6px;
+  margin: 0 0 0 12px;
+  font-size: 14px;
   text-decoration: none;
   color: #a9a9a9;
 }
 
 #window_actions a:hover {
-  text-shadow: 1px 1px 1px #393939, 0 0 1em #dddddd;
+  font-weight: bold;
+}
+
+.card-header {
+  margin-top: 0px;
 }
