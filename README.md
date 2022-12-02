@@ -1,6 +1,9 @@
 # chrome-extension-starter
 chrome extension을 위한 starter repository입니다.
 
+### referenced repo
+https://github.com/onikienko/chrome-extensions-box
+
 # chrome-extension 만들기
 
 ## chrome-extension 프로젝트 구성
@@ -11,6 +14,9 @@ chrome extension을 위한 starter repository입니다.
 
 ## manifest.json 파일 작성하기
 - https://developer.chrome.com/docs/extensions/mv3/manifest/
+
+# 설치
+- git clone git://github.com/deokudev/chrome-extension-starter.git << 확장 프로그램명 >>
 
 ### 핵심 속성 설명
 - action : 툴바의 확장 프로그램 로고를 클릭 시, 표시될 html 파일과 로고 이미지, 제목을 정의한다.
@@ -292,8 +298,9 @@ chrome extension을 위한 starter repository입니다.
 - 브라우저 내에 추가된 확장 프로그램으로 테스트 진행
 
 ## 배포하기
+- _
 
 ## Tip
-- "__MSG_extension_desc__" 형식의 값을 사용하면, 다국어 지원 가능하다.
+- "__MSG_extension_desc__" 형식의 값을 사용하면, 다국어 적용이 가능
 
 
