@@ -14,6 +14,11 @@
     "description": "확장프로그램 설명"
   },
 
+  "extension_author": {
+    "message": "제작자 이름",
+    "description": "제작자 이름"
+  },
+
   "o_tabs_help": {
     "message": "Help",
     "description": "탭 이름 / options.html에서 사용하는 파일일 경우, 'o_'를 prefix로 붙여 사용한다."

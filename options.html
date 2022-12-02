@@ -15,7 +15,7 @@
     <div id="page">
       <header>
         <img
-          src="icnos/app_icon32.png"
+          src="icons/app_icon32.png"
           alt="app_icon_image"
           title="{{extension_description}}"
           width="48"
@@ -48,18 +48,20 @@
             />
           </div>
 
-          <div id="help"></div>
+          <div id="help">This is help Tab</div>
         </div>
       </section>
 
       <footer>
-        <p class="copyright">by <a href="#" target="_blank">...</a></p>
+        <p class="copyright">
+          by <a href="#" target="_blank">{{extension_author}}</a>
+        </p>
       </footer>
     </div>
 
     <script src="js/helpers/localizer.js"></script>
     <script src="lib/jsTabs/tabs.js"></script>
-    <script src="js/storage.js"></script>
+    <script src="js/background_storage.js"></script>
     <script src="js/helpers/quick_options.js"></script>
     <script src="js/options.js"></script>
   </body>
