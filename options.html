@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/options.css" />
+    <link rel="stylesheet" type="text/css" href="lib/jsTabs/tabs.css" />
+    <title>{{extension_name}}</title>
+  </head>
+  <body>
+    <div id="message_place">
+      <span id="error">{{o_error}}</span>
+      <span id="success">{{o_saved}}</span>
+    </div>
+
+    <div id="page">
+      <header>
+        <img
+          src="icnos/app_icon32.png"
+          alt="app_icon_image"
+          title="{{extension_description}}"
+          width="48"
+          height="48"
+        />
+        <strong>{{extension_name}}</strong>
+      </header>
+
+      <section id="main_tabs" class="tabs">
+        <ul class="tabs_nav">
+          <li><a href="#main">{{o_tabs_main}}</a></li>
+          <li><a href="#help">{{o_tabs_help}}</a></li>
+        </ul>
+
+        <div class="tabs_content">
+          <div id="main">
+            <!-- TO-DO : options에 해당하는 값들을 작성-->
+            <!-- EXAMPLE -->
+            <select data-storage="example_select_val">
+              <option value="type1">1</option>
+              <option value="type2">2</option>
+              <option value="type3">3</option>
+            </select>
+            <input type="checkbox" data-storage="example_checkbox_val" />
+            <input type="text" data-storage="example_input_val" />
+            <input
+              type="submit"
+              data-storage="example_input_val"
+              value="Save"
+            />
+          </div>
+
+          <div id="help"></div>
+        </div>
+      </section>
+
+      <footer>
+        <p class="copyright">by <a href="#" target="_blank">...</a></p>
+      </footer>
+    </div>
+
+    <script src="js/helpers/localizer.js"></script>
+    <script src="lib/jsTabs/tabs.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/helpers/quick_options.js"></script>
+    <script src="js/options.js"></script>
+  </body>
+</html>

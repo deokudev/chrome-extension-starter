@@ -22,7 +22,7 @@
       "32": "icons/app_icon32.png"
     },
     "default_title": "Click Me",
-    "default_popup": "html/popup.html"
+    "default_popup": "popup.html"
   },
 
   "icons": {
@@ -30,7 +30,7 @@
   },
 
   "options_ui": {
-    "page": "html/options.html",
+    "page": "options.html",
     "open_in_tab": false
   },
 
@@ -41,12 +41,12 @@
   "content_scripts": [
     {
       "matches": ["file://home.html"],
-      "js": ["js/content-script.js"],
-      "css": ["css/content-script.css"]
+      "js": ["js/content_script.js"],
+      "css": ["css/content_script.css"]
     }
   ],
 
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   }
 }

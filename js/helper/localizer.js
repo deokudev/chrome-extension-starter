@@ -40,6 +40,6 @@ window.addEventListener("load", function () {
 });
 
 /*
-HTML 파일 대상으로 {{ }}이 사용될 경우, 
-자동으로 chrome.i18n.getMessage() 호출되도록 지원
+HTML 파일에서 최상단에 해당 js를 import할 경우
+"{{ }}" 형식으로 된 Text를 대상으로 chrome.i18n.getMessage()이 호출되도록 지원
 */
