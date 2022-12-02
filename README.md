@@ -15,6 +15,9 @@ https://github.com/onikienko/chrome-extensions-box
 ## manifest.json 파일 작성하기
 - https://developer.chrome.com/docs/extensions/mv3/manifest/
 
+# 설치
+- git clone git://github.com/deokudev/chrome-extension-starter.git << 확장 프로그램명 >>
+
 ### 핵심 속성 설명
 - action : 툴바의 확장 프로그램 로고를 클릭 시, 표시될 html 파일과 로고 이미지, 제목을 정의한다.
 - icons : chrome web store에서 표시될 아이콘 이미지를 해상도별로 정의한다.
