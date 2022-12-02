@@ -1,0 +1,46 @@
+{
+  "extension_name": {
+    "message": "신규 확장프로그램",
+    "description": "확장프로그램 이름"
+  },
+
+  "extension_short_name": {
+    "message": "신규 확장프로그램",
+    "description": "확장프로그램 축약명"
+  },
+
+  "extension_description": {
+    "message": "확장프로그램 설명",
+    "description": "확장프로그램 설명"
+  },
+
+  "o_tabs_help": {
+    "message": "Help",
+    "description": "탭 이름 / options.html에서 사용하는 파일일 경우, 'o_'를 prefix로 붙여 사용한다."
+  },
+
+  "o_tabs_main": {
+    "message": "Main",
+    "description": "탭 이름"
+  },
+
+  "o_error": {
+    "message": "Error",
+    "description": "에러 메시지"
+  },
+
+  "o_saved": {
+    "message": "Saved",
+    "description": "저장 완료 메시지"
+  },
+
+  "p_optionsBtn": {
+    "message": "Options",
+    "description": "버튼 힌트 / popup.html에서 사용하는 파일일 경우, 'p_'를 prefix로 붙여 사용한다."
+  },
+
+  "p_helpBtn": {
+    "message": "Help",
+    "description": "버튼 힌트"
+  }
+}

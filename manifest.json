@@ -1,56 +1,52 @@
 {
-    "author": "Sangdeok Jeong",
-    
-    "manifest_version": 3,
-    
-    "default_locale": "ko",
-    
-    "name": "__MSG_extension_name__",
-    
-    "short_name": "__MSG_extension_sname__",
-    
-    "description": "__MSG_extension_desc__",
-    
-    "version": "0.0.1",
-    
-    "version_name": "preview",
-    
-    "action": {
-        "default_icon": {             
-          "16": "icons/app_icon16.png",
-          "24": "icons/app_icon24.png", 
-          "32": "icons/app_icon32.png"   
-        },
-        "default_title": "Click Me",
-        "default_popup": "html/popup.html"
+  "author": "Developer Name",
+
+  "manifest_version": 3,
+
+  "default_locale": "ko",
+
+  "name": "__MSG_extension_name__",
+
+  "short_name": "__MSG_extension_short_name__",
+
+  "description": "__MSG_extension_description__",
+
+  "version": "0.0.1",
+
+  "version_name": "preview",
+
+  "action": {
+    "default_icon": {
+      "16": "icons/app_icon16.png",
+      "24": "icons/app_icon24.png",
+      "32": "icons/app_icon32.png"
     },
-    
-    "icons": {
-        "128": "icons/app_icon128.png"
-    },
+    "default_title": "Click Me",
+    "default_popup": "html/popup.html"
+  },
 
-    "options_ui": {
-        "page": "html/options.html",
-        "open_in_tab": false
-    },
+  "icons": {
+    "128": "icons/app_icon128.png"
+  },
 
-    "host_permissions" : [
-        "http://*/*", 
-        "https://*/*"
-    ],
-    
-    "permissions": [
-        "activeTab",
-        "experimental"
-    ],
+  "options_ui": {
+    "page": "html/options.html",
+    "open_in_tab": false
+  },
 
-    "content_scripts": [{
-        "matches": ["file://home.html"],
-        "js": ["js/content-script.js"],
-        "css": ["css/content-script.css"]
-    }],
+  "host_permissions": ["http://*/*", "https://*/*"],
 
-    "background": {
-        "service_worker": "background.js"
+  "permissions": ["activeTab", "experimental"],
+
+  "content_scripts": [
+    {
+      "matches": ["file://home.html"],
+      "js": ["js/content-script.js"],
+      "css": ["css/content-script.css"]
     }
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  }
 }
