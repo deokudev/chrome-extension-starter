@@ -11,59 +11,79 @@ chrome extension을 위한 starter repository입니다.
 
 ## manifest.json 파일 작성하기
 - https://developer.chrome.com/docs/extensions/mv3/manifest/
+
 ### 핵심 속성 설명
 - action : 툴바의 확장 프로그램 로고를 클릭 시, 표시될 html 파일과 로고 이미지, 제목을 정의한다.
 - icons : chrome web store에서 표시될 아이콘 이미지를 해상도별로 정의한다.
+- content_scripts : inject할 주소와 커스텀 .js 파일, .css 파일 경로를 정의한다.
+- host_permissions : permission을 적용할 페이지 주소 목록을 정의(* 사용 가능)
+- permissions : extension에서 사용할 크롬브라우저 기능에 대한 권한에 대한 목록을 정의
 - background : 백그라운드로 실행되어야 할 .js 파일을 정의한다.
+
+### 핵심만 간추린 manifest.json 예시
 ````
 {
-// 제작자명 (필수?)
-    "author": "<<제작자명>>",
+    "author": "Sangdeok Jeong",
+    
     "manifest_version": 3,
-// 기본 언어
+    
     "default_locale": "ko",
-// 확장 프로그램명
+    
     "name": "__MSG_extension_name__",
-// 확장 프로그램 축약명
+    
     "short_name": "__MSG_extension_sname__",
-// 확장 프로그램 설명
+    
     "description": "__MSG_extension_desc__",
-// 버전 정보 (필수)
+    
     "version": "0.0.1",
-// 버전명
+    
     "version_name": "preview",
-// 브라우저 행동 (필수)
-// "default_popup"과 같이, 기본적으로 출력할 html 파일 지정
-    "browser_action": {
-        "default_icon": "symbol_color.png",
-        "default_popup": "popup.html"
+    
+    "action": {
+        "default_icon": {             
+          "16": "icons/app_icon16.png",
+          "24": "icons/app_icon24.png", 
+          "32": "icons/app_icon32.png"   
+        },
+        "default_title": "Click Me",
+        "default_popup": "html/popup.html"
     },
-//
+    
     "icons": {
-        "128": "symbol_color.png"
+        "128": "icons/app_icon128.png"
     },
 
     "options_ui": {
-        "chrome_style": true,
-        "page": "options.html"
+        "page": "html/options.html",
+        "open_in_tab": false
     },
 
+    "host_permissions" : [
+        "http://*/*", 
+        "https://*/*",
+    ],
+    
     "permissions": [
-        "activeTab", "http://*/*", "https://*/*"
+        "activeTab",
+        "experimental"
     ],
 
     "content_scripts": [{
         "matches": ["file://home.html"],
-        "js": ["scripts.js"],
-        "css": ["css.css"]
+        "js": ["js/content-script.js"],
+        "css": ["css/content-script.css"]
     }],
 
     "background": {
-        "scripts": ["background.js"],
+        "service_worker": "background.js",
     }
 }
 
 
+````
+
+### 속성별 설명
+````
 {
   // Required
   "manifest_version": <<manifest 파일 형식의 버전을 지정하는 정수값, 최신 포멧 3으로 고정 ex. 3>>,
@@ -145,40 +165,123 @@ chrome extension을 위한 starter repository입니다.
     "source": "network"
   },
   "homepage_url": "https://path/to/homepage",
-  "host_permissions": [...],
+  "host_permissions": [<<permission을 적용할 페이지 주소 목록 ex."https://*/", "https://www.google.com/">>],
   "import": [{"id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}],
   "incognito": "spanning, split, or not_allowed",
   "input_components": ...,
   "key": "publicKey",
   "minimum_chrome_version": "versionString",
-  "nacl_modules": [...],
+  
+  // 외부 Native Module을 연동하여 사용 가능하다.
+  "nacl_modules": [{
+            "path": "OpenOfficeViewer.nmf",
+            "mime_type": "application/vnd.oasis.opendocument.spreadsheet"
+  }],
+  
   "natively_connectable": ...,
   "oauth2": ...,
   "offline_enabled": true,
-  "omnibox": {
-    "keyword": "aString"
+  "omnibox": { 
+    "keyword": "<<주소창에 키워드 설정 ex.aString>>" //chrome.omnibox API를 통해, 해당 keyword가 입력되었을 경우 동작을 처리할 수 있다.
   },
   "optional_host_permissions": ["..."],
-  "optional_permissions": ["tabs"],
-  "options_page": "options.html",
-  "options_ui": {
-    "page": "options.html"
+  "optional_permissions": ["tabs", "storage"], // 필수 권한이 아닌 경우 정의(permissions에도 동일하게 정의 필요), 코드 상에서 chrome.permissions API를 통해 조회, 요청, 삭제가 가능하다.
+  "options_page": "<< toolbar 우클릭 후, 볼수 있는 옵션 페이지를 만들기 원하는 경우 ex.options.html>>",
+  "options_ui": { // open_in_tab 설정을 비활성화 하려면, options_page가 아닌 options_ui 속성을 사용한
+    "page": "options.html",
+    "open_in_tab": false
   },
-  "permissions": ["tabs"],
+  "permissions": [<< extension에서 필요한 권한명 정의 ex. "tabs">>],
   "platforms": ...,
   "replacement_web_app": ...,
-  "requirements": {...},
-  "sandbox": [...],
-  "short_name": "Short Name",
-  "storage": {
+  "requirements": {...}, // 3D, grape api 필요한 경우, 명시해주어야 함
+  "sandbox": { // CSP 설정과 관련된 속성으로써, eval()과 inline script 등을 sandbox된 page에서는 사용할 수 있게 한다.
+    "pages": [
+      "<< .js, .css 파일을 제외한 페이지 파일 경로 ex. page1.html>>",
+      "<< .js, .css 파일을 제외한 페이지 파일 경로 ex. directory/page2.html>>"
+    ]
+  },
+  "short_name": "<<요약된 extension 명 ex. Short Name>>",
+  "storage": { // local storage가 아닌 따로 managed storage를 사용하려면, extension에서 정의한 schema 파일을 만들고, 매핑 필요
     "managed_schema": "schema.json"
   },
   "system_indicator": ...,
-  "tts_engine": {...},
+  "tts_engine": {...}, //tts 엔진 기능 사용하고 싶은 경우, 상세 설정
   "update_url": "https://path/to/updateInfo.xml",
-  "version_name": "aString",
-  "web_accessible_resources": [...]
+  "version_name": "<<버전에 대한 설명 ex. aString>>",
+  "web_accessible_resources": [
+    {
+      "resources": [ << 외부에 공개하고 싶은 리소스 파일 경로(extension root 기준) ex. "test1.png", "/images/*.png">> ],
+      "matches": [ << 해당 리소스에 접근할 수 있는 외부 주소 ex. "https://web-accessible-resources-1.glitch.me/*">> ]
+    }, {
+      "resources": [ "test3.png", "test4.png" ],
+      "matches": [ "https://web-accessible-resources-2.glitch.me/*" ]
+    }
+  ],
 }
+````
+
+### 대표 Permissions 목록
+- "activeTab", "experimental" 두개 입력 시, 하기 모든 권한을 활용 가능할 듯
+````
+        "http://*.google.com/*",
+//        "activeTab", 
+        "alarms",
+        "background",
+        "bookmarks",
+        "browsingData",
+        "chrome://favicon/",
+        "clipboardRead",
+        "clipboardWrite",
+        "contentSettings",
+        "contextMenus",
+        "cookies",
+        "debugger",
+        "declarativeContent",
+        "declarativeWebRequest",
+        "desktopCapture",
+        "dns",
+        "documentScan",
+        "downloads",
+//        "experimental",
+        "fileBrowserHandler",
+        "fileSystemProvider",
+        "fontSettings",
+        "gcm",
+        "geolocation",
+        "history",
+        "identity",
+        "idle",
+        "idltest",
+        "infobars",
+        "location",
+        "management",
+        "nativeMessaging",
+        "notificationProvider",
+        "notifications",
+        "pageCapture",
+        "power",
+        "privacy",
+        "processes",
+        "proxy",
+        "pushMessaging",
+        "sessions",
+        "signedInDevices",
+        "storage",
+        "system.cpu",
+        "system.display",
+        "system.memory",
+        "system.storage",
+        "tabCapture",
+        "tabs",
+        "topSites",
+        "tts",
+        "ttsEngine",
+        "unlimitedStorage",
+        "vpnProvider",
+        "webNavigation",
+        "webRequest",
+        "webRequestBlocking"
 ````
 
 ## 로컬 테스트 하기
