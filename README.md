@@ -60,7 +60,7 @@ chrome extension을 위한 starter repository입니다.
 
     "host_permissions" : [
         "http://*/*", 
-        "https://*/*",
+        "https://*/*"
     ],
     
     "permissions": [
@@ -75,7 +75,7 @@ chrome extension을 위한 starter repository입니다.
     }],
 
     "background": {
-        "service_worker": "background.js",
+        "service_worker": "background.js"
     }
 }
 
