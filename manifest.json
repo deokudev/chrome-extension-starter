@@ -40,7 +40,7 @@
 
   "content_scripts": [
     {
-      "matches": ["file://home.html"],
+      "matches": ["http://*/*", "https://*/*"],
       "js": ["js/content_script.js"],
       "css": ["css/content_script.css"]
     }

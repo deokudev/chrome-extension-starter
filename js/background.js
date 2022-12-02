@@ -48,9 +48,7 @@ chrome.runtime.onUpdateAvailable.addListener(function (details) {
   chrome.runtime.reload();
 });
 
-// TO-DO : background에서 동작하는 코드를 작성
-// Example
-
+// TO-DO : background에서 동작하는 js 코드를 작성
 // Receiving message from a content-script
 chrome.extension.onMessage.addListener(function (
   request,
