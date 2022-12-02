@@ -1,7 +1,7 @@
 # chrome-extension-starter
 chrome extension을 위한 starter repository입니다.
 
-# 참고 page
+### referenced repo
 https://github.com/onikienko/chrome-extensions-box
 
 # chrome-extension 만들기
@@ -295,6 +295,7 @@ https://github.com/onikienko/chrome-extensions-box
 - 브라우저 내에 추가된 확장 프로그램으로 테스트 진행
 
 ## 배포하기
+- _
 
 ## Tip
 - "__MSG_extension_desc__" 형식의 값을 사용하면, 다국어 적용이 가능
