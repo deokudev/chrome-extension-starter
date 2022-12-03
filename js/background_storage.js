@@ -6,6 +6,7 @@ let storage = {
     example_select_val: "type3",
     // example_select_multiple_val: ["type1", "type2"],
     example_checkbox_val: 1, // checkbox의 경우 1 or 0
+    example_checkbox2_val: 1,
     example_input_val: "example_text",
   },
 };

@@ -9,7 +9,8 @@ window.addEventListener(
     let event = new CustomEvent("optionsPageReady");
 
     function showMessage(msg) {
-      let el = document.getElementById(msg === "error" ? "error" : "success");
+      let el =
+        document.getElementById(msg === "error" ? "error" : "success") || {};
       el.style.display = "inline";
       setTimeout(function () {
         el.style.display = "none";

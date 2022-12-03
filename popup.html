@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/popup.css" />
     <script src="js/helpers/localizer.js"></script>
     <script src="js/background_storage.js"></script>
+    <script src="js/helpers/quick_options.js"></script>
     <script src="js/popup.js"></script>
     <title>{{extension_name}}</title>
   </head>
@@ -29,6 +30,20 @@
       <div class="card-body">
         <!-- TO-DO : Toolbar 우측 상단 Icon 클릭 시 표시되는 popup html 작성 -->
         <p class="card-text">App is running.</p>
+        <form action="#">
+          <div class="form-check">
+            <input
+              data-storage="example_checkbox2_val"
+              type="checkbox"
+              class="form-check-input dark"
+              id="exampleCheck"
+            />
+            <label class="form-check-label" for="exampleCheck"
+              >Check me out</label
+            >
+          </div>
+          <button type="submit" class="btn btn-dark mt-4">Save</button>
+        </form>
       </div>
     </div>
   </body>
