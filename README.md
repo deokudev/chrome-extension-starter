@@ -5,7 +5,27 @@ chrome extension을 위한 starter repository입니다.
 https://github.com/onikienko/chrome-extensions-box
 
 # 설치
-- git clone https://github.com/deokudev/chrome-extension-starter.git << 확장 프로그램명 >>
+1. github에서 신규 원격 repository를 생성한다.
+2. --bare 옵션을 넣어서, remote repository를 독립적인 local git으로 clone한다.
+````
+git clone --bare https://github.com/deokudev/chrome-extension-starter.git temp-chrome-extension-starter
+````
+3. 독립된 local git으로 이동 후, --mirror 옵션으로 통째로 새로운 원격 레포지토리로 push한다.
+````
+(mac) cd temp-chrome-extension-starter.git
+(window) cd temp-chrome-extension-starter
+git push --mirror << 신규 git url ex. https://github.com/deokudev/chrome-extension-new.git>>
+````
+4. 이전 local git 삭제
+````
+cd ..
+(mac) rm -rf temp-chrome-extension-starter.git
+(window) rmdir /s  temp-chrome-extension-starter
+````
+5. 신규 원격 repository를 clone한다.
+````
+git clone << 신규 git url ex. https://github.com/deokudev/chrome-extension-new.git>>
+````
 
 # chrome-extension 만들기
 
